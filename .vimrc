@@ -24,6 +24,7 @@ set shiftwidth=2
 set smartindent
 set autoindent
 set expandtab
+set linebreak
 set history=1000
 " Enable auto completion menu after pressing TAB.
 set wildmenu
