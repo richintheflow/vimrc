@@ -46,7 +46,7 @@ set statusline=%F%m%r%h%w%=\ [%Y]\ [%{&ff}]\ [%04l,%04v]\ [%p%%]\ [%L]
 "                personal conf                "
 "                & keybindings                "
 """""""""""""""""""""""""""""""""""""""""""""""                      
-" Highlight cursor line underneath the cursor vertically.
+" Highlight cursor line underneath the cursor vertically and horizontally.
 map <F8> :set cursorcolumn!<Bar>set cursorline!<CR>
 hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
