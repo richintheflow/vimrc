@@ -9,5 +9,5 @@ The files goes to the user directory:
 
 Only in normal mode.  
 F5 : Indent autofolding.  
-F6 : NERDTree menu (toggle)  
+F6 : NERDTree menu (toggle).  
 F8 : Highlight cursor line underneath the cursor verticaly and horizontaly.  
