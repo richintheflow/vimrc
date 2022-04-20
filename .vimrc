@@ -36,10 +36,12 @@ filetype on
 filetype plugin on
 " set omnifunc=syntaxcomplete#Complete
 colorscheme torte
-
 " STATUSLINE CONF
 set laststatus=2
 set statusline=%F%m%r%h%w%=\ [%Y]\ [%{&ff}]\ [%04l,%04v]\ [%p%%]\ [%L]
+" Move between rows in wrapped lines
+noremap j gj
+noremap k gk
 
 
 """""""""""""""""""""""""""""""""""""""""""""""
@@ -48,8 +50,8 @@ set statusline=%F%m%r%h%w%=\ [%Y]\ [%{&ff}]\ [%04l,%04v]\ [%p%%]\ [%L]
 """""""""""""""""""""""""""""""""""""""""""""""                      
 " Highlight cursor line underneath the cursor vertically and horizontally.
 map <F8> :set cursorcolumn!<Bar>set cursorline!<CR>
-hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
+hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE guibg=lightgrey guifg=white
+hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE guibg=lightgrey guifg=white
 " Open and close NERDTree (toggle NERDTree view) using single keystroke
 nmap <F6> :NERDTreeToggle<CR>
 " Automated file templates (skeletons))
@@ -75,6 +77,9 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:markdown_folding = 1
 " activate auto folding syntax
 map <F5> :setlocal foldmethod=syntax<CR>
+
+" Activate LATEX
+let g:tex_flavor = "latex"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -107,11 +112,17 @@ func! WordProcessorES()
 endfu
 com! WPES call WordProcessorES()
 
+" Autolauch creation PDF by pressing ctrl+T
+autocmd FileType tex nmap <buffer> <C-t> :!latexmk -pdf %<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""
 "              VIM-PLUGS               "
 """"""""""""""""""""""""""""""""""""""""                 
 call plug#begin()
+" LATEX for VIM
+Plug 'lervag/vimtex'
+" Plug 'vim-latex/vim-latex'
 " tree explorer
 Plug 'preservim/NERDTree'
 " display the spaces indentation
@@ -128,5 +139,24 @@ Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'sheerun/vim-polyglot'
 " vim autocompletion and analysis
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" BASE vim-lsp-settings
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+" Autocompletion lSP
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Tabular pluging - makes tables :Tabular /|
+Plug 'godlygeek/tabular'
 call plug#end()
+
+
+""""""""""""""""""""""""""""""""""""""""
+"                HELP                  "
+"""""""""""""""""""""""""""""""""""""""" 
+
+""""""""""""""VIM LSP""""""""""""""""
+"  While editing a file with a supported filetype:
+" :LspInstallServer
+" To uninstall server:
+" :LspUninstallServer server-name
