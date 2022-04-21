@@ -15,7 +15,7 @@
 "                basics vim conf               "
 """"""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
-set t_Co=256
+set termguicolors
 syntax on
 set mouse=a
 set background=dark
@@ -39,6 +39,7 @@ colorscheme torte
 " STATUSLINE CONF
 set laststatus=2
 set statusline=%F%m%r%h%w%=\ [%Y]\ [%{&ff}]\ [%04l,%04v]\ [%p%%]\ [%L]
+hi statusline guifg=darkcyan guibg=white
 " Move between rows in wrapped lines
 noremap j gj
 noremap k gk
@@ -50,8 +51,8 @@ noremap k gk
 """""""""""""""""""""""""""""""""""""""""""""""                      
 " Highlight cursor line underneath the cursor vertically and horizontally.
 map <F8> :set cursorcolumn!<Bar>set cursorline!<CR>
-hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE guibg=lightgrey guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE guibg=lightgrey guifg=white
+hi CursorLine    guibg=darkred guifg=white cterm=NONE
+hi CursorColumn  guibg=darkred guifg=white cterm=NONE
 " Open and close NERDTree (toggle NERDTree view) using single keystroke
 nmap <F6> :NERDTreeToggle<CR>
 " Automated file templates (skeletons))
@@ -146,7 +147,7 @@ Plug 'mattn/vim-lsp-settings'
 " Autocompletion lSP
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Tabular pluging - makes tables :Tabular /|
+" Tabular plugin - makes tables :Tabular /|
 Plug 'godlygeek/tabular'
 call plug#end()
 
